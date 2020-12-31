@@ -1,0 +1,12 @@
+export { default as Dashboard } from './Dashboard';
+export { default as Icons } from './Icons';
+export { default as NotFound } from './NotFound';
+export { default as SignIn } from './SignIn';
+export { default as UserList } from './UserList';
+export { default as Platos } from './Platos';
+export { default as Cocteles } from './Cocteles';
+export { default as Vinos } from './Vinos';
+export { default as NuevoItem } from './NuevoItem';
+export { default as NuevoVino } from './NuevoVino';
+export { default as NuevoCocktail } from './NuevoCocktail';
+export { default as EditarAgenda } from './EditarAgenda';
