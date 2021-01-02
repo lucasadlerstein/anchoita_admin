@@ -38,7 +38,7 @@ const ProductsToolbar = props => {
             color="primary"
             variant="contained"
           >
-            Agregar plato
+            Agregar Plato
           </Button>
         </Link>
       </div>

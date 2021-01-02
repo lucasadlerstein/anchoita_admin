@@ -62,7 +62,7 @@ const AccountDetails = props => {
     { nombre: 'Con la mano', codigo: 'mano' },
     { nombre: 'Quesos', codigo: 'quesos' },
     { nombre: 'Crudas', codigo: 'crudas' },
-    { nombre: 'Charcutería de elaboración propia', codigo: 'charculateria' },
+    { nombre: 'Charcutería de elaboración propia', codigo: 'charcuteria' },
     { nombre: 'Vegetales', codigo: 'vegetales' },
     { nombre: 'De río y mar argentinos', codigo: 'rio-mar' },
     { nombre: 'Huevos', codigo: 'huevos' },
@@ -85,9 +85,11 @@ const AccountDetails = props => {
     celiaco: false,
     picante: false,
     destacado: false,
-    categoria: 'mano',
+    categoria: editando ? '' : 'mano',
     en_nombre: '',
-    en_descripcion: ''
+    en_descripcion: '',
+    stock: true,
+    visible: true,
   });
 
   const handleChange = event => {

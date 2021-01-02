@@ -61,7 +61,7 @@ const headCells = [
   { id: 'categoria', numeric: false, disablePadding: false, label: 'Categoría' },
   { id: 'checks', numeric: false, disablePadding: false, label: 'Checks' },
   { id: 'precio', numeric: true, disablePadding: false, label: 'Precio' },
-  { id: 'acciones', numeric: false, disablePadding: false, label: '' },
+  { id: 'acciones', numeric: false, disablePadding: false, label: 'Acciones' },
 ];
 
 function EnhancedTableHead(props) {

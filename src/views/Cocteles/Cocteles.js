@@ -56,7 +56,7 @@ const headCells = [
   { id: 'categoria', numeric: false, disablePadding: false, label: 'Categoría' },
   { id: 'cristaleria', numeric: false, disablePadding: false, label: 'Cristalería' },
   { id: 'precio', numeric: true, disablePadding: false, label: 'Precio' },
-  { id: 'acciones', numeric: false, disablePadding: false, label: '' },
+  { id: 'acciones', numeric: false, disablePadding: false, label: 'Acciones' },
 ];
 
 function EnhancedTableHead(props) {
@@ -327,7 +327,7 @@ const Cocteles = () => {
                       <TableCell align="left">{item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1)}</TableCell>
                       <TableCell align="left">{item.cristaleria}</TableCell>
                       <TableCell align="right">${item.precio}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="right" width="15%">
                         <IconButton
                           onClick={() => eliminarBtn(item.id)}
                         ><DeleteIcon /></IconButton>
