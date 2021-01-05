@@ -29,7 +29,6 @@ const Dashboard = () => {
     const traerDatos = async () => {
       const estadisticasDB = await clienteAxios.get('/general/estadisticas');
       setEstadisticas(estadisticasDB.data);
-      console.log(estadisticasDB.data);
     }
     traerDatos();
   //eslint-disable-next-line

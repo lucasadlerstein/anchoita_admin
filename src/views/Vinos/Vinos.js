@@ -161,7 +161,6 @@ const Vinos = () => {
     async function traerVinos() {
       try {
         const vinosConsulta = await clienteAxios.get('/vinos/todos');
-        console.log(vinosConsulta.data.vinos);
         setItems(vinosConsulta.data.vinos);
       } catch (error) {
         console.log('DBERROR');

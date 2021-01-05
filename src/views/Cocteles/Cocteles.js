@@ -155,7 +155,6 @@ const Cocteles = () => {
     async function traerItems() {
       try {
         const consulta = await clienteAxios.get('/cocteles/todos');
-        console.log(consulta.data.cocteles);
         setItems(consulta.data.cocteles);
       } catch (error) {
         console.log('DBERROR');

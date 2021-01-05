@@ -160,7 +160,6 @@ const Platos = () => {
     async function traerItems() {
       try {
         const consulta = await clienteAxios.get('/platos/todos');
-        console.log(consulta.data.platos);
         setItems(consulta.data.platos);
       } catch (error) {
         console.log('DBERROR');
