@@ -202,7 +202,7 @@ const Cocteles = () => {
   
   const cambiarVisibilidad = async (id) => {
     try {
-      const respuesta = await clienteAxios.put(`/general/visibilidad/cocteles/${id}`);
+      const respuesta = await clienteAxios.put(`/general/visibilidad/cocteleria/${id}`);
       ConfirmacionSwal.fire({
         title: 'Excelente',
         text: 'Modificado exitosamente',
