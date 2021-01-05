@@ -194,6 +194,62 @@ const AccountDetails = props => {
     
   }
 
+  const ConfirmacionSwal = withReactContent(Swal)
+
+  const btnCancelar = () => {
+    ConfirmacionSwal.fire({
+      title: '¿Seguro querés cancelar?',
+      text: `Se perderá toda la información`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Estoy seguro',
+      cancelButtonText: 'Quiero seguir'
+    }).then( async (result)  => {
+      if(result.value){
+        window.location.replace("/vinos");
+      }
+    }); 
+  }
+
+  const btnVaciar = () => {
+    ConfirmacionSwal.fire({
+      title: '¿Seguro querés vaciar los campos?',
+      text: `Se perderá toda la información`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, vacialo',
+      cancelButtonText: 'Seguir editando'
+    }).then( async (result)  => {
+      if(result.value){
+        setValues({
+          nombre: '',
+          anada: editando ? '' : 2020,
+          bodega: editando ? '' : '4040',
+          precio: '',
+          vinedo: '',
+          pais: editando ? '' : 'Argentina',
+          region: '',
+          tipo: editando ? '' : 'Espumoso',
+          uva: editando ? '' : 'Albariño',
+          copa: false,
+          t375: false,
+          t500: false,
+          t750: true,
+          t1125: false,
+          t1500: false,
+          t3000: false,
+          stock: true,
+          visible: true,
+          en_nombre: ''
+        })
+      }
+    }); 
+  }
+
   return (
     <Card
       {...rest}
@@ -490,15 +546,31 @@ const AccountDetails = props => {
         </CardContent>
         <Divider />
         <CardActions>
-          <Button
+        <Button
             color="primary"
             variant="contained"
             type="submit"
           >
-            {
-              (editando) ? 'Editar' : 'Guardar'
-            }
+          { (editando) ? 'Guardar cambios' : 'Crear' }
           </Button>
+
+          <Button
+            onClick={() => btnCancelar()}
+            style={{backgroundColor: 'red', color: 'white'}}
+            variant="contained"
+          >Cancelar</Button>
+
+          {
+            editando ? null : (
+              <Button
+                onClick={() => btnVaciar()}
+                color="default"
+                variant="contained"
+                style={{margin: '0 0 0 auto'}}
+              >Vaciar campos</Button>
+            ) 
+          }
+
           
           {errores ? <Alert severity="error">{errores}</Alert> : null}
         </CardActions>

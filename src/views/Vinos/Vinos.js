@@ -321,10 +321,10 @@ const Vinos = () => {
                       // selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox
-                          // checked={isItemSelected}
+                        {/* <Checkbox
+                          checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
-                        />
+                        /> */}
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {item.nombre}

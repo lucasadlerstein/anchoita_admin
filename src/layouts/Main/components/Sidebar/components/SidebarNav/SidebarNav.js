@@ -32,10 +32,18 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1)
   },
   active: {
-    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
     fontWeight: theme.typography.fontWeightMedium,
     '& $icon': {
-      color: theme.palette.primary.main
+      color: 'white'
+    },
+    '& :hover': {
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+      '& $icon': {
+        color: theme.palette.primary.main
+      }
     }
   }
 }));

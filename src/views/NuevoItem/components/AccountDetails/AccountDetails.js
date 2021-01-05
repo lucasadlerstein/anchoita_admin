@@ -7,6 +7,8 @@ import clienteAxios from '../../../../config/axios';
 import Alert from '@material-ui/lab/Alert';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import {
   Input,
@@ -19,11 +21,6 @@ import {
   Button,
   TextField
 } from '@material-ui/core';
-
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { nodeModuleNameResolver } from 'typescript';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -158,6 +155,56 @@ const AccountDetails = props => {
         });
       }
     }
+  }
+
+  const ConfirmacionSwal = withReactContent(Swal)
+
+  const btnCancelar = () => {
+    ConfirmacionSwal.fire({
+      title: '¿Seguro querés cancelar?',
+      text: `Se perderá toda la información`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Estoy seguro',
+      cancelButtonText: 'Quiero seguir'
+    }).then( async (result)  => {
+      if(result.value){
+        window.location.replace("/platos");
+      }
+    }); 
+  }
+
+  const btnVaciar = () => {
+    ConfirmacionSwal.fire({
+      title: '¿Seguro querés vaciar los campos?',
+      text: `Se perderá toda la información`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, vacialo',
+      cancelButtonText: 'Seguir editando'
+    }).then( async (result)  => {
+      if(result.value){
+        setValues({
+          nombre: '',
+          descripcion: '',
+          precio: '',
+          vegano: false,
+          vegetariano: false,
+          celiaco: false,
+          picante: false,
+          destacado: false,
+          categoria: editando ? '' : 'mano',
+          en_nombre: '',
+          en_descripcion: '',
+          stock: true,
+          visible: true
+        })
+      }
+    }); 
   }
 
   return (
@@ -363,10 +410,27 @@ const AccountDetails = props => {
             variant="contained"
             type="submit"
           >
-            { (editando) ? 'Editar' : 'Guardar' }
+          { (editando) ? 'Guardar cambios' : 'Crear' }
           </Button>
-          
-          {errores ? <Alert severity="error">{errores}</Alert> : null}
+
+          <Button
+            onClick={() => btnCancelar()}
+            style={{backgroundColor: 'red', color: 'white'}}
+            variant="contained"
+          >Cancelar</Button>
+
+          {
+            editando ? null : (
+              <Button
+                onClick={() => btnVaciar()}
+                color="default"
+                variant="contained"
+                style={{margin: '0 0 0 auto'}}
+              >Vaciar campos</Button>
+            ) 
+          }
+
+          {/* {errores ? <Alert severity="error">{errores}</Alert> : null} */}
         </CardActions>
       </form>
     </Card>
