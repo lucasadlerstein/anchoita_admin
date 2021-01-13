@@ -60,11 +60,11 @@ const Sidebar = props => {
       href: '/cocteles',
       icon: <InvertColorsIcon />
     },
-    {
-      title: 'Categorías',
-      href: '/ingresos',
-      icon: <FilterListIcon />
-    }
+    // {
+    //   title: 'Categorías',
+    //   href: '/ingresos',
+    //   icon: <FilterListIcon />
+    // }
   ];
 
   return (
