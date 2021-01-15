@@ -127,6 +127,10 @@ const AccountDetails = props => {
     t1125: false,
     t1500: false,
     t3000: false,
+    c140: false,
+    c120: false,
+    c70: false,
+    c35: false,
     stock: true,
     visible: true,
     en_nombre: ''
@@ -242,6 +246,10 @@ const AccountDetails = props => {
           t1125: false,
           t1500: false,
           t3000: false,
+          c140: false,
+          c120: false,
+          c70: false,
+          c35: false,
           stock: true,
           visible: true,
           en_nombre: ''
@@ -512,10 +520,26 @@ const AccountDetails = props => {
             <Grid item lg={1} md={2} xs={4}>
               <FormControlLabel control={<Checkbox checked={values.t3000} onChange={handleChangeCheckbox} name="t3000" />} label="3000ml" />
             </Grid>
-            <Grid item lg={2} md={2} xs={6}>
-              <FormControlLabel control={<Checkbox checked={values.copa} onChange={handleChangeCheckbox} name="copa" />} label="Por copa" />
+          </Grid>
+          <CardHeader
+            subheader="Por copa"
+          />
+          <Grid
+            container
+            spacing={3}
+          >
+            <Grid item lg={1} md={2} xs={4}>
+              <FormControlLabel control={<Checkbox checked={values.c140} onChange={handleChangeCheckbox} name="c140" />} label="140ml" />
             </Grid>
-            
+            <Grid item lg={1} md={2} xs={4}>
+              <FormControlLabel control={<Checkbox checked={values.c120} onChange={handleChangeCheckbox} name="c120" />} label="120ml" />
+            </Grid>
+            <Grid item lg={1} md={2} xs={4}>
+              <FormControlLabel control={<Checkbox checked={values.c70} onChange={handleChangeCheckbox} name="c70" />} label="70ml" />
+            </Grid>
+            <Grid item lg={1} md={2} xs={4}>
+              <FormControlLabel control={<Checkbox checked={values.c35} onChange={handleChangeCheckbox} name="c35" />} label="35ml" />
+            </Grid>
           </Grid>
           <Divider />
           <CardHeader
