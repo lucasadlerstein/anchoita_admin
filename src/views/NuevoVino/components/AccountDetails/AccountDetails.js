@@ -206,7 +206,7 @@ const AccountDetails = props => {
       text: `Se perderá toda la información`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#0E3453',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Estoy seguro',
       cancelButtonText: 'Quiero seguir'
@@ -223,7 +223,7 @@ const AccountDetails = props => {
       text: `Se perderá toda la información`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#0E3453',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si, vacialo',
       cancelButtonText: 'Seguir editando'

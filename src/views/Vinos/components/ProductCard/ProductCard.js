@@ -73,7 +73,7 @@
 //       text: `Si lo eliminas, no podes recuperarlo`,
 //       icon: 'warning',
 //       showCancelButton: true,
-//       confirmButtonColor: '#3085d6',
+//       confirmButtonColor: '#0E3453',
 //       cancelButtonColor: '#d33',
 //       confirmButtonText: 'Eliminar',
 //       cancelButtonText: 'Cancelar'
