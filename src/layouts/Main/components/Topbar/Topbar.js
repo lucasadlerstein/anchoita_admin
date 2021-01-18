@@ -39,9 +39,9 @@ const Topbar = props => {
         <RouterLink to="/">
           <img
             style={{marginLeft: '15px'}}
-            height="25px"
+            height="35px"
             alt="Logo Anchoita Restaurant"
-            src="/images/logos/logo-anchoita-admin.png"
+            src="/images/logos/logo-menu.png"
           />
         </RouterLink>
         <div className={classes.flexGrow} />

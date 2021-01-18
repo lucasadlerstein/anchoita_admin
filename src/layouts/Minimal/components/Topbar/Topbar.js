@@ -27,9 +27,9 @@ const Topbar = props => {
         <RouterLink to="/">
           <img
             style={{marginLeft: '15px'}}
-            height="25px"
-            alt="Logo Infinidad"
-            src="/images/logos/logo-anchoita-admin.png"
+            height="35px"
+            alt="Logo Anchoita"
+            src="/images/logos/logo-menu.png"
           />
         </RouterLink>
       </Toolbar>
