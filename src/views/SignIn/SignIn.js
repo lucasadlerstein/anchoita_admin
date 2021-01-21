@@ -172,7 +172,10 @@ const SignIn = props => {
 
   const handleSignIn = event => {
     event.preventDefault();
-    if(formState.values.password === (process.env.REACT_APP_LOGIN_PASS) && formState.values.usuario === (process.env.REACT_APP_LOGIN_USER)){
+    if(formState.values.password === (process.env.REACT_APP_LOGIN_PASS) &&
+    ( formState.values.usuario === (process.env.REACT_APP_LOGIN_USERa) ||
+      formState.values.usuario === (process.env.REACT_APP_LOGIN_USERb) ||
+      formState.values.usuario === (process.env.REACT_APP_LOGIN_USERc) ) ){
       let hoy = new Date;
       hoy = hoy.getDate();
       window.localStorage.setItem('ad547sss8456621', (hoy*15));
