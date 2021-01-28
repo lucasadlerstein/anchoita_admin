@@ -65,7 +65,7 @@ const Sidebar = props => {
     {
       title: 'Platos Ocultos',
       href: '/platos-ocultos',
-      icon: <VisibilityOffIcon />
+      icon: <VisibilityOffOutlinedIcon />
     },
     {
       title: 'Vinos Ocultos',
@@ -75,7 +75,7 @@ const Sidebar = props => {
     {
       title: 'Cócteles Ocultos',
       href: '/cocteles-ocultos',
-      icon: <VisibilityOffIcon />
+      icon: <VisibilityOffOutlinedIcon />
     }
   ];
 

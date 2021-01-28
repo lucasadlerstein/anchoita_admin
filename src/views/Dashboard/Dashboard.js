@@ -8,7 +8,8 @@ import {
   TotalUsers,
   TasksProgress,
   TotalProfit,
-  ComprasDash
+  ComprasDash,
+  Reutilizable
 } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -76,6 +77,13 @@ const Dashboard = () => {
             style={{cursor: 'pointer'}}
           />
         </Grid>
+
+      </Grid>
+      <Grid
+        container
+        spacing={4}
+        style={{marginTop: '20px'}}
+      >
         <Grid
           item
           lg={3}
@@ -85,6 +93,49 @@ const Dashboard = () => {
         >
           <TotalProfit totalCharlasVisibles={estadisticas.totalOcultos} />
         </Grid>
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <Reutilizable
+            texto={"PLATOS OCULTOS"}
+            numero={estadisticas.totalPlatosOcultos}
+            onClick={() => window.location.href = '/platos-ocultos'}
+            style={{cursor: 'pointer'}}
+          />
+        </Grid>
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <Reutilizable
+            texto={"VINOS OCULTOS"}
+            numero={estadisticas.totalVinosOcultos}
+            onClick={() => window.location.href = '/vinos-ocultos'}
+            style={{cursor: 'pointer'}}
+          />
+        </Grid>
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <Reutilizable
+            texto={"COCTELES OCULTOS"}
+            numero={estadisticas.totalCocteleriaOcultos}
+            onClick={() => window.location.href = '/cocteles-ocultos'}
+            style={{cursor: 'pointer'}}
+          />
+        </Grid>
+        
       </Grid>
     </div>
   );
