@@ -13,13 +13,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { ProductsToolbar, ProductCard } from './components';
 import clienteAxios from '../../config/axios';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -59,7 +54,7 @@ const headCells = [
   { id: 'nombre', numeric: false, disablePadding: true, label: 'Nombre' },
   { id: 'descripcion', numeric: false, disablePadding: false, label: 'Descripción' },
   { id: 'categoria', numeric: false, disablePadding: false, label: 'Categoría' },
-  { id: 'checks', numeric: false, disablePadding: false, label: 'Checks' },
+  { id: 'cristaleria', numeric: false, disablePadding: false, label: 'Cristalería' },
   { id: 'precio', numeric: true, disablePadding: false, label: 'Precio' },
   { id: 'acciones', numeric: false, disablePadding: false, label: 'Acciones' },
 ];
@@ -145,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Platos = () => {
+const CoctelesOcultos = () => {
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -159,8 +154,8 @@ const Platos = () => {
   useEffect(() => {
     async function traerItems() {
       try {
-        const consulta = await clienteAxios.get('/platos/todos');
-        setItems(consulta.data.platos);
+        const consulta = await clienteAxios.get('/general/ocultos/totales');
+        setItems(consulta.data.ocultosCocteleria);
       } catch (error) {
         console.log('DBERROR');
       }
@@ -183,7 +178,7 @@ const Platos = () => {
     }).then( async (result)  => {
       if(result.value){
         try {
-          const resEliminar = await clienteAxios.delete(`/platos/${id}`);  
+          const resEliminar = await clienteAxios.delete(`/cocteles/${id}`);  
           ConfirmacionSwal.fire({
             title: 'Eliminado con éxito',
             text: "Listo, ya lo eliminaste",
@@ -195,7 +190,7 @@ const Platos = () => {
         } catch (error) {
           ConfirmacionSwal.fire({
             title: 'Ups!',
-            text: "No pudimos eliminar el plato",
+            text: "No pudimos eliminar el cóctel",
             icon: 'error',
             timer: 2000,
           });
@@ -206,7 +201,7 @@ const Platos = () => {
   
   const cambiarVisibilidad = async (id) => {
     try {
-      const respuesta = await clienteAxios.put(`/general/visibilidad/platos/${id}`);
+      const respuesta = await clienteAxios.put(`/general/visibilidad/cocteleria/${id}`);
       ConfirmacionSwal.fire({
         title: 'Excelente',
         text: 'Modificado exitosamente',
@@ -225,7 +220,7 @@ const Platos = () => {
   }
 
   const editarItem = id => {
-    window.location.href = `/agregar-plato?id=${id}`;
+    window.location.href = `/agregar-coctel?id=${id}`;
   }
 
   const handleRequestSort = (event, property) => {
@@ -278,13 +273,16 @@ const Platos = () => {
 
   const [num, setNum] = useState(1);
 
-
   return (
     <div className={classes.root}>
-      <ProductsToolbar />
+      {/* <ProductsToolbar /> */}
       <div className={classes.content}>
         
       <div className={classes.root}>
+      <Typography style={{
+        fontSize: '30px',
+        marginBottom: '20px'
+      }}>CÓCTELES OCULTOS</Typography>
       <Paper className={classes.paper}>
         <TableContainer>
           <Table
@@ -330,14 +328,9 @@ const Platos = () => {
                       </TableCell>
                       <TableCell align="left">{item.descripcion}</TableCell>
                       <TableCell align="left">{item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1)}</TableCell>
-                      <TableCell align="left">
-                        { (item.vegano) ? 'V' : (item.vegetariano) ? 'v' : null }
-                        { (item.celiaco) ? 'C' : null }
-                        { (item.picante) ? 'P' : null }
-                        { (item.destacado) ? 'D' : null }
-                      </TableCell>
+                      <TableCell align="left">{item.cristaleria}</TableCell>
                       <TableCell align="right">${item.precio}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="right" width="15%">
                         <IconButton
                           onClick={() => eliminarBtn(item.id)}
                         ><DeleteIcon /></IconButton>
@@ -384,4 +377,4 @@ const Platos = () => {
   );
 };
 
-export default Platos;
+export default CoctelesOcultos;

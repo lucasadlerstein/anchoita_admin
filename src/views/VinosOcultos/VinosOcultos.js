@@ -57,9 +57,10 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: 'nombre', numeric: false, disablePadding: true, label: 'Nombre' },
-  { id: 'descripcion', numeric: false, disablePadding: false, label: 'Descripción' },
-  { id: 'categoria', numeric: false, disablePadding: false, label: 'Categoría' },
-  { id: 'checks', numeric: false, disablePadding: false, label: 'Checks' },
+  { id: 'anada', numeric: false, disablePadding: false, label: 'Añada' },
+  { id: 'bodega', numeric: false, disablePadding: false, label: 'Bodega' },
+  { id: 'tipo', numeric: false, disablePadding: false, label: 'Tipo' },
+  { id: 'uva', numeric: false, disablePadding: false, label: 'Uva' },
   { id: 'precio', numeric: true, disablePadding: false, label: 'Precio' },
   { id: 'acciones', numeric: false, disablePadding: false, label: 'Acciones' },
 ];
@@ -78,7 +79,7 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': 'select all' }}
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -145,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Platos = () => {
+const VinosOcultos = () => {
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -157,15 +158,15 @@ const Platos = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    async function traerItems() {
+    async function traerVinos() {
       try {
-        const consulta = await clienteAxios.get('/platos/todos');
-        setItems(consulta.data.platos);
+        const vinosConsulta = await clienteAxios.get('/general/ocultos/totales');
+        setItems(vinosConsulta.data.ocultosVinos);
       } catch (error) {
         console.log('DBERROR');
       }
     }
-    traerItems();
+    traerVinos();
   }, [])
 
   const ConfirmacionSwal = withReactContent(Swal)
@@ -183,7 +184,7 @@ const Platos = () => {
     }).then( async (result)  => {
       if(result.value){
         try {
-          const resEliminar = await clienteAxios.delete(`/platos/${id}`);  
+          const resEliminar = await clienteAxios.delete(`/vinos/${id}`);  
           ConfirmacionSwal.fire({
             title: 'Eliminado con éxito',
             text: "Listo, ya lo eliminaste",
@@ -195,7 +196,7 @@ const Platos = () => {
         } catch (error) {
           ConfirmacionSwal.fire({
             title: 'Ups!',
-            text: "No pudimos eliminar el plato",
+            text: "No pudimos eliminar el vino",
             icon: 'error',
             timer: 2000,
           });
@@ -206,7 +207,7 @@ const Platos = () => {
   
   const cambiarVisibilidad = async (id) => {
     try {
-      const respuesta = await clienteAxios.put(`/general/visibilidad/platos/${id}`);
+      const respuesta = await clienteAxios.put(`/general/visibilidad/vinos/${id}`);
       ConfirmacionSwal.fire({
         title: 'Excelente',
         text: 'Modificado exitosamente',
@@ -225,7 +226,7 @@ const Platos = () => {
   }
 
   const editarItem = id => {
-    window.location.href = `/agregar-plato?id=${id}`;
+    window.location.href = `/agregar-vino?id=${id}`;
   }
 
   const handleRequestSort = (event, property) => {
@@ -278,13 +279,16 @@ const Platos = () => {
 
   const [num, setNum] = useState(1);
 
-
   return (
     <div className={classes.root}>
-      <ProductsToolbar />
+      {/* <ProductsToolbar /> */}
       <div className={classes.content}>
         
       <div className={classes.root}>
+      <Typography style={{
+        fontSize: '30px',
+        marginBottom: '20px'
+      }}>VINOS OCULTOS</Typography>
       <Paper className={classes.paper}>
         <TableContainer>
           <Table
@@ -308,7 +312,6 @@ const Platos = () => {
                 .map((item, index) => {
                   // const isItemSelected = isSelected(item.nombre);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
                       hover
@@ -328,14 +331,10 @@ const Platos = () => {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {item.nombre}
                       </TableCell>
-                      <TableCell align="left">{item.descripcion}</TableCell>
-                      <TableCell align="left">{item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1)}</TableCell>
-                      <TableCell align="left">
-                        { (item.vegano) ? 'V' : (item.vegetariano) ? 'v' : null }
-                        { (item.celiaco) ? 'C' : null }
-                        { (item.picante) ? 'P' : null }
-                        { (item.destacado) ? 'D' : null }
-                      </TableCell>
+                      <TableCell align="left">{item.anada}</TableCell>
+                      <TableCell align="left">{item.bodega}</TableCell>
+                      <TableCell align="left">{item.tipo}</TableCell>
+                      <TableCell align="left">{item.uva}</TableCell>
                       <TableCell align="right">${item.precio}</TableCell>
                       <TableCell align="right">
                         <IconButton
@@ -384,4 +383,4 @@ const Platos = () => {
   );
 };
 
-export default Platos;
+export default VinosOcultos;

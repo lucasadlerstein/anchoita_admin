@@ -145,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Platos = () => {
+const PlatosOcultos = () => {
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -159,8 +159,8 @@ const Platos = () => {
   useEffect(() => {
     async function traerItems() {
       try {
-        const consulta = await clienteAxios.get('/platos/todos');
-        setItems(consulta.data.platos);
+        const consulta = await clienteAxios.get('/general/ocultos/totales');
+        setItems(consulta.data.ocultosPlatos);
       } catch (error) {
         console.log('DBERROR');
       }
@@ -281,10 +281,14 @@ const Platos = () => {
 
   return (
     <div className={classes.root}>
-      <ProductsToolbar />
+      {/* <ProductsToolbar /> */}
       <div className={classes.content}>
         
       <div className={classes.root}>
+      <Typography style={{
+        fontSize: '30px',
+        marginBottom: '20px'
+      }}>PLATOS OCULTOS</Typography>
       <Paper className={classes.paper}>
         <TableContainer>
           <Table
@@ -384,4 +388,4 @@ const Platos = () => {
   );
 };
 
-export default Platos;
+export default PlatosOcultos;

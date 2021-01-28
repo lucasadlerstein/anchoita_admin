@@ -13,8 +13,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: 'fit-content'
   },
   avatar: {
-    width: 60,
-    height: 60
+    width: 120,
+    height: 40
   },
   name: {
     marginTop: theme.spacing(1)
@@ -28,7 +28,7 @@ const Profile = props => {
 
   const user = {
     name: 'Admin',
-    avatar: '/images/avatar_latam.png',
+    avatar: '/images/logos/anchoita_azul.png',
     bio: 'Anchoita'
   };
 
@@ -38,10 +38,11 @@ const Profile = props => {
       className={clsx(classes.root, className)}
     >
       <Avatar
-        alt="Person"
+        alt="Avatar"
         className={classes.avatar}
         component={RouterLink}
         src={user.avatar}
+        variant={'square'}
         to="/dashboard"
       />
       <Typography

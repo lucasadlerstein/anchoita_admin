@@ -8,6 +8,8 @@ import LocalBarIcon from '@material-ui/icons/LocalBar';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 
 import { Profile, SidebarNav } from './components';
 
@@ -53,18 +55,28 @@ const Sidebar = props => {
     {
       title: 'Vinos',
       href: '/vinos',
-      icon: <LocalBarIcon />
+      icon: <img src={'images/wine-bottle.png'} height={25} width={25}/>
     },
     {
       title: 'Cócteles y Bebidas',
       href: '/cocteles',
-      icon: <InvertColorsIcon />
+      icon: <LocalBarIcon />
     },
-    // {
-    //   title: 'Categorías',
-    //   href: '/ingresos',
-    //   icon: <FilterListIcon />
-    // }
+    {
+      title: 'Platos Ocultos',
+      href: '/platos-ocultos',
+      icon: <VisibilityOffIcon />
+    },
+    {
+      title: 'Vinos Ocultos',
+      href: '/vinos-ocultos',
+      icon: <VisibilityOffOutlinedIcon />
+    },
+    {
+      title: 'Cócteles Ocultos',
+      href: '/cocteles-ocultos',
+      icon: <VisibilityOffIcon />
+    }
   ];
 
   return (

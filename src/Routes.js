@@ -10,8 +10,12 @@ import {
   SignIn as SignInView,
   NotFound as NotFoundView,
   Platos as PlatosView,
+  PlatosOcultos as PlatosOcultosView,
+  Ocultos as OcultosView,
   Cocteles as CoctelesView,
+  CoctelesOcultos as CoctelesOcultosView,
   Vinos as VinosView,
+  VinosOcultos as VinosOcultosView,
   NuevoItem as NuevoItemView,
   NuevoCocktail as NuevoCocktailView,
   NuevoVino as NuevoVinoView,
@@ -37,6 +41,30 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/usuarios"
+      />
+      <RouteWithLayout
+        component={OcultosView}
+        exact
+        layout={MainLayout}
+        path="/ocultos"
+      />
+      <RouteWithLayout
+        component={VinosOcultosView}
+        exact
+        layout={MainLayout}
+        path="/vinos-ocultos"
+      />
+      <RouteWithLayout
+        component={CoctelesOcultosView}
+        exact
+        layout={MainLayout}
+        path="/cocteles-ocultos"
+      />
+      <RouteWithLayout
+        component={PlatosOcultosView}
+        exact
+        layout={MainLayout}
+        path="/platos-ocultos"
       />
       <RouteWithLayout
         component={PlatosView}

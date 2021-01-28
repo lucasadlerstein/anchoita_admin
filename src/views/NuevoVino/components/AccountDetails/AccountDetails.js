@@ -94,7 +94,7 @@ const AccountDetails = props => {
 
   const provincias = [ 'Buenos Aires', 'Catamarca', 'Chubut', 'Córdoba', 'Jujuy', 'La Rioja', 'Mendoza', 'Río Negro', 'Salta', 'San Juan' ]
 
-  const uvas = [ 'Albariño', 'Bequignol', 'Bonarda', 'Cabernet Bouchet', 'Cabernet Franc', 'Cabernet Sauvignon', 'Caiño', 'Carignan', 'Cartoixa', 'Cereza', 'Chardonnay', 'Chenin Blanc', 'Cinsault', 'Cordisco', 'Criolla', 'Ensamblaje', 'Garnacha', 'Gewurztraminer', 'Godello', 'Gruner Veltliner', 'Listán Negro', 'Malbec', 'Malvasía', 'Marsanne', 'Merlot', 'Moscatel Blanco', 'Moscatel Rosado', 'Moscatel Tinto', 'Mourvedre', 'Nebbiolo', 'Palomino Fino', 'Pedro Ximénez', 'Petit Manseng', 'Petit Verdot', 'Pinot Gris', 'Pinot Noir', 'Riesling', 'Sangiovese', 'Sauvignon Blanc', 'Semillón', 'Syrah', 'Tannat', 'Tempranillo', 'Tinta País', 'Torrontés', 'Trousseau', 'Verdejo', 'Viognier' ]
+  const uvas = [ 'Albariño', 'Bequignol', 'Bonarda', 'Cabernet Bouchet', 'Cabernet Franc', 'Cabernet Sauvignon', 'Caiño', 'Carignan', 'Cartoixa', 'Cereza', 'Chardonnay', 'Chardonnay - Pinot Noir', 'Chenin Blanc', 'Cinsault', 'Cordisco', 'Criolla', 'Ensamblaje', 'Garnacha', 'Gewurztraminer', 'Godello', 'Gruner Veltliner', 'Listán Negro', 'Malbec', 'Malvasía', 'Marsanne', 'Merlot', 'Moscatel Blanco', 'Moscatel Rosado', 'Moscatel Tinto', 'Mourvedre', 'Nebbiolo', 'Palomino Fino', 'Pedro Ximénez', 'Petit Manseng', 'Petit Verdot', 'Pinot Gris', 'Pinot Noir', 'Regent', 'Riesling', 'Sangiovese', 'Sauvignon Blanc', 'Semillón', 'Syrah', 'Tannat', 'Tempranillo', 'Tinta País', 'Torrontés', 'Trousseau', 'Verdejo', 'Viognier' ]
 
   const tipos = [ 
     { nombre: 'Espumoso', codigo: 'espumoso' },
@@ -112,8 +112,8 @@ const AccountDetails = props => {
   const [idEditando, setIdEditando] = useState(null);
   const [values, setValues] = useState({
     nombre: '',
-    anada: editando ? '' : 2020,
-    bodega: editando ? '' : '4040',
+    anada: editando ? '' : ' ',
+    bodega: editando ? '' : ' ',
     precio: '',
     vinedo: '',
     pais: editando ? '' : 'Argentina',
@@ -314,7 +314,7 @@ const AccountDetails = props => {
                 value={values.anada}
                 variant="outlined"
               >
-                <option value={null} disabled selected>- Seleccionar una -</option>
+                <option value={' '} selected>- Seleccionar una -</option>
                 {
                   anadas.map(opc => (
                     <option key={opc} value={opc}>{opc}</option>
@@ -340,7 +340,7 @@ const AccountDetails = props => {
                 value={values.bodega}
                 variant="outlined"
               >
-                <option value={null} disabled selected>- Seleccionar una -</option>
+                <option value={' '} selected>- Seleccionar una -</option>
                 {
                   bodegas.map(opc => (
                     <option key={opc} value={opc}>{opc}</option>
