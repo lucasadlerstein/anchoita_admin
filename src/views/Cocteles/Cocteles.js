@@ -148,7 +148,7 @@ const Cocteles = () => {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(50);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -272,6 +272,11 @@ const Cocteles = () => {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, items.length - page * rowsPerPage);
 
   const [num, setNum] = useState(1);
+  const [busqueda, setBusqueda] = useState(null);
+
+  const handleChangeBuscador = (e) => {
+    setBusqueda(e.target.value)
+  }
 
   return (
     <div className={classes.root}>
@@ -279,6 +284,20 @@ const Cocteles = () => {
       <div className={classes.content}>
         
       <div className={classes.root}>
+      <input
+        type="text"
+        placeholder="Escribí para buscar..."
+        onChange={handleChangeBuscador}
+        value={busqueda}
+        style={{
+          marginBottom: '20px',
+          backgroundColor: 'transparent',
+          border: 'none',
+          borderBottom: '1px solid black',
+          fontSize: '16px',
+          padding: '8px'
+        }}
+        />
       <Paper className={classes.paper}>
         <TableContainer>
           <Table
@@ -303,50 +322,58 @@ const Cocteles = () => {
                   // const isItemSelected = isSelected(item.nombre);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      // onClick={(event) => handleClick(event, item.nombre)}
-                      role="checkbox"
-                      // aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={item.id}
-                      // selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        {/* <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        /> */}
-                      </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {item.nombre}
-                      </TableCell>
-                      <TableCell align="left">{item.descripcion}</TableCell>
-                      <TableCell align="left">{item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1)}</TableCell>
-                      <TableCell align="left">{item.cristaleria}</TableCell>
-                      <TableCell align="right">${item.precio}</TableCell>
-                      <TableCell align="right" width="15%">
-                        <IconButton
-                          onClick={() => eliminarBtn(item.id)}
-                        ><DeleteIcon /></IconButton>
-                        <IconButton
-                          onClick={() => editarItem(item.id)}
-                        ><EditIcon /></IconButton>
-                        {
-                          (item.visible === true) ? (
-                            <IconButton
-                              onClick={() => cambiarVisibilidad(item.id) }
-                            ><VisibilityOffIcon /></IconButton>
-                          ) : (
-                            <IconButton
-                              onClick={() => cambiarVisibilidad(item.id) }
-                            ><VisibilityIcon /></IconButton>
-                          )
-                        }
-                      </TableCell>
-                    </TableRow>
-                  );
+                  if (
+                    (busqueda === null || busqueda === '') || (
+                    (busqueda !== null || busqueda !== '') && (
+                      item.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase()) ||
+                      item.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase()) ||
+                      item.categoria.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())))) {
+                    
+                        return (
+                          <TableRow
+                            hover
+                            // onClick={(event) => handleClick(event, item.nombre)}
+                            role="checkbox"
+                            // aria-checked={isItemSelected}
+                            tabIndex={-1}
+                            key={item.id}
+                            // selected={isItemSelected}
+                          >
+                            <TableCell padding="checkbox">
+                              {/* <Checkbox
+                                checked={isItemSelected}
+                                inputProps={{ 'aria-labelledby': labelId }}
+                              /> */}
+                            </TableCell>
+                            <TableCell component="th" id={labelId} scope="row" padding="none">
+                              {item.nombre}
+                            </TableCell>
+                            <TableCell align="left">{item.descripcion}</TableCell>
+                            <TableCell align="left">{item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1)}</TableCell>
+                            <TableCell align="left">{item.cristaleria}</TableCell>
+                            <TableCell align="right">${item.precio}</TableCell>
+                            <TableCell align="right" width="15%">
+                              <IconButton
+                                onClick={() => eliminarBtn(item.id)}
+                              ><DeleteIcon /></IconButton>
+                              <IconButton
+                                onClick={() => editarItem(item.id)}
+                              ><EditIcon /></IconButton>
+                              {
+                                (item.visible === true) ? (
+                                  <IconButton
+                                    onClick={() => cambiarVisibilidad(item.id) }
+                                  ><VisibilityOffIcon /></IconButton>
+                                ) : (
+                                  <IconButton
+                                    onClick={() => cambiarVisibilidad(item.id) }
+                                  ><VisibilityIcon /></IconButton>
+                                )
+                              }
+                            </TableCell>
+                          </TableRow>
+                        );
+                  }
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>

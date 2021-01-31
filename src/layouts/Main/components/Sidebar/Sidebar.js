@@ -65,17 +65,17 @@ const Sidebar = props => {
     {
       title: 'Platos Ocultos',
       href: '/platos-ocultos',
-      icon: <VisibilityOffOutlinedIcon />
+      icon: <VisibilityOffIcon />
     },
     {
       title: 'Vinos Ocultos',
       href: '/vinos-ocultos',
-      icon: <VisibilityOffOutlinedIcon />
+      icon: <VisibilityOffIcon />
     },
     {
       title: 'Cócteles Ocultos',
       href: '/cocteles-ocultos',
-      icon: <VisibilityOffOutlinedIcon />
+      icon: <VisibilityOffIcon />
     }
   ];
 

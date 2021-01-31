@@ -153,7 +153,7 @@ const Platos = () => {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(50);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -277,6 +277,11 @@ const Platos = () => {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, items.length - page * rowsPerPage);
 
   const [num, setNum] = useState(1);
+  const [busqueda, setBusqueda] = useState(null);
+
+  const handleChangeBuscador = (e) => {
+    setBusqueda(e.target.value)
+  }
 
 
   return (
@@ -285,6 +290,20 @@ const Platos = () => {
       <div className={classes.content}>
         
       <div className={classes.root}>
+      <input
+        type="text"
+        placeholder="Escribí para buscar..."
+        onChange={handleChangeBuscador}
+        value={busqueda}
+        style={{
+          marginBottom: '20px',
+          backgroundColor: 'transparent',
+          border: 'none',
+          borderBottom: '1px solid black',
+          fontSize: '16px',
+          padding: '8px'
+        }}
+        />  
       <Paper className={classes.paper}>
         <TableContainer>
           <Table
@@ -309,6 +328,12 @@ const Platos = () => {
                   // const isItemSelected = isSelected(item.nombre);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
+                  if (
+                    (busqueda === null || busqueda === '') || (
+                    (busqueda !== null || busqueda !== '') && (
+                      item.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase()) ||
+                      item.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase()) ||
+                      item.categoria.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())))) {
                   return (
                     <TableRow
                       hover
@@ -357,7 +382,7 @@ const Platos = () => {
                         }
                       </TableCell>
                     </TableRow>
-                  );
+                  ); }
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
